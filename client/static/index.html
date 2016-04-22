@@ -49,39 +49,39 @@
       return factory;
     });
 
-    // qaApp.factory('UserFactory', function($http, $location){
-    //   var factory = {};
-    //   var currentUser = null;
+    qaApp.factory('UserFactory', function($http, $location){
+      var factory = {};
+      var currentUser = null;
 
 
-    //   factory.getUser = function(callback){
-    //     if(currentUser) {
-    //       callback(currentUser);
-    //     } else {
-    //       $location.path('/');
-    //     }
-    //   }
+      factory.getUser = function(callback){
+        if(currentUser) {
+          callback(currentUser);
+        } else {
+          $location.path('/');
+        }
+      }
 
-      //a factory method to login the user
-      //will either find an existing user by that name and return it
-      //or the backend will create a new user with that name
-      //either way i expect to get a user object back from the database.
-    //     factory.logUser = function(user, callback){
-    //       $http.post('/login', logUser).then(function(res){
-    //         currentUser = response.data;
-    //         callback();
-    //       });
-    //     };
-    //   }
+      factory.logUser = function(user, callback){
+        $http.post('/login', logUser).then(function(res){
+            currentUser = response.data;
+            callback();
+        });
+      };
 
-    //   return factory;
-    // });
+      return factory;
+    });
 
 ////////// Controllers ////////
     qaApp.controller('QuestionsController', function ($scope, $window, QuestionFactory){
+
       QuestionFactory.getQuestions(function(data){
         $scope.questions = data;
       });
+
+      $scope.userPrompt = function() { 
+        prompt("Please enter your name", ""); 
+      };
 
       $scope.addQuestion = function() {
           console.log($scope.newQuestion);
@@ -101,19 +101,22 @@
     });
 
 
-    //   qaApp.controller('LoginsController', function($scope, loginFactory, $location){
+    qaApp.controller('UserController', function($scope, UserFactory, $location){
 
+      // $scope.userPrompt = function() { 
+      //   alert("Please enter your name"); 
+      // };
 
-    //   $scope.login = function(user){
-    //     loginFactory.login(user, function(){
-    //       loginFactory.getUser(function(user){
-    //         console.log(user);
-    //         $location.path('/success');
-    //       })
+      // var user = "Mollie";
 
-    //     })
-    //   }
-    // });
+      // $scope.login = function(user){
+      //   UserFactory.login(user, function(){
+      //     UserFactory.getUser(function(user){
+      //       console.log(user);
+      //       $location.path('/');
+      //     });
+      //   });
+      // };
 
   //   qaApp.controller('UsersController', function ($scope, UserFactory){
   //       $scope.users = [];
@@ -128,7 +131,7 @@
   //           $scope.users = data;
   //       });
         
-  //   });
+    });
 
 </script>
 </head>
@@ -137,10 +140,10 @@
 
   <div class="wrapper">
 
-     <a href="#" type="button" class="btn-nav">Home</a> <a href="#/new_question" type="button" class="btn-nav">Add Question</a>
+     <a href="#/" type="button" class="btn-nav">Home</a> <a href="#/new_question" type="button" class="btn-nav">Add Question</a>
         <div class="mini-wrapper">
         
-	        <div ng-view="">
+	        <div ng-view>
             ... loading ...
 	        </div>
 
@@ -148,7 +151,6 @@
     </div>
 </body>
 <script type="javascript">
-
-//   var logUser = prompt("Please enter your username", "");
+  
 </script>
 </html>

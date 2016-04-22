@@ -3,7 +3,7 @@ var Question = mongoose.model('Question');
 //var User = mongoose.model('User');
 
 var questions = require('../controllers/questions.js');
-//var users = require('../controllers/users.js');
+var users = require('../controllers/users.js');
 
 module.exports = function(app) {
 
@@ -21,6 +21,12 @@ module.exports = function(app) {
 	// app.get('/users', function(req, res) {
 	// 	users.showAll(req, res);
 	// });
+
+
+	// Logging in
+	app.post('/login', function(req, res){
+	  users.logUser(req, res);
+	})
 
 
 	// New

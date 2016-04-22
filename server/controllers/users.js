@@ -37,5 +37,21 @@ module.exports = (function() {
 	    });
     },
 
+     logIn: function(req, res){
+    	console.log("Logging in....", req.body);
+    	User.findOne({name: req.body.name}, function(err, user){
+    	  if(err){ 
+    	    console.log(err);
+    	  } else if(user){
+    	      res.json(user);
+    	  } else {
+    	      User.create({name: req.body.name}, function(err, results){
+    	        if(err) { console.log(err); }
+    	        res.json(results);
+    	      });
+    	  }
+    	});
+    },
+
   };
 })();

@@ -1,9 +1,9 @@
 var mongoose = require("mongoose");
 var Question = mongoose.model('Question');
-var User = mongoose.model('User');
+//var User = mongoose.model('User');
 
 var questions = require('../controllers/questions.js');
-var users = require('../controllers/users.js');
+//var users = require('../controllers/users.js');
 
 module.exports = function(app) {
 
@@ -13,23 +13,23 @@ module.exports = function(app) {
 	var errors_array = [];
 
 	app.get('/', function(req, res) {
-		customers.showAll(req, res);
+		questions.showAll(req, res);
 	});
-	app.get('/customers', function(req, res) {
-		customers.showAll(req, res);
+	app.get('/questions', function(req, res) {
+		questions.showAll(req, res);
 	});
-	app.get('/orders', function(req, res) {
-		orders.showAll(req, res);
-	});
+	// app.get('/users', function(req, res) {
+	// 	users.showAll(req, res);
+	// });
 
 
 	// New
 	app.get('/questions/new', function(req, res) {
 		questions.new(req, res);
 	});
-	app.get('/users/new', function(req, res) {
-		users.new(req, res);
-	});
+	// app.get('/users/new', function(req, res) {
+	// 	users.new(req, res);
+	// });
 
 
 	// Show
@@ -42,9 +42,9 @@ module.exports = function(app) {
 	app.post('/questions', function(req, res) {
 	 	questions.create(req, res);
 	});
-	app.post('/users', function(req, res) {
-	 	users.create(req, res);
-	});
+	// app.post('/users', function(req, res) {
+	//  	users.create(req, res);
+	// });
 
 
 };

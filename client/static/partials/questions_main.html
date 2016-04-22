@@ -1,4 +1,23 @@
-<div ng-controller="questionsController">
+<div ng-controller="QuestionsController">
 	<h2>All Questions (Main Page)</h2>
+
+	<input type="text" ng-model="filter_name" placeholder="questions filter" />
+  	<h4>Filter by: {{filter_name}} </h4>
+
+
+  	<table>
+  		<tr>
+  			<th>Question</th>
+  			<th>User</th>
+  			<th>Actions</th>
+  		</tr>
+  		<tr ng-repeat="eachQuestion in questions | filter: filter_name">
+  			<td>{{eachQuestion.question}}</td>
+  			<td>{{eachQuestion._user}}</td>
+  			<td style="text-align: right"><a href="#/question/{{eachQuestion._id}}"><button type='submit' class="btn-add">Show Question</button></a></td>
+  		</tr>
+  	</table>
+
+
 
 </div>

@@ -53,12 +53,12 @@ button {
 button:hover {
 	cursor: pointer;
 }
-.btn-buy, .btn-del, .btn-add, .btn-nav {
+.btn-buy, .btn-del, .btn-simple, .btn-add, .btn-nav {
     color: white;
     padding: .3em;
     border-radius: 5px;
     letter-spacing: 1px;
-    font-size: large;
+    font-size: small;
 }
 .btn-add {
     border: darkorange 2px solid;
@@ -73,6 +73,11 @@ button:hover {
     border: #911 2px solid;
     background-color: red;
 }
+.btn-simple {
+    color: black;
+    border: black 2px solid;
+    background-color: #CCC;
+}
 .btn-nav {
     border: #999 2px solid;
     border-bottom: 0px transparent;
@@ -82,6 +87,7 @@ button:hover {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     margin-bottom: .3em;
+    font-size: large;
 }
 a.btn-nav:hover {
 	text-decoration: underline;

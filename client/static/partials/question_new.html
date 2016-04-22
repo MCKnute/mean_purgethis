@@ -1,0 +1,17 @@
+<div ng-controller="QuestionsController">
+	<h2>New Question</h2>
+
+
+ 	<form>
+      <label for="_user">User: </label>
+          <input type='text' ng-model='newQuestion._user' name='_user' /><br />
+  		<label for="question">Question: </label>
+          <input type='text' ng-model='newQuestion.question' name='question' /> <br />
+      <label for="description">Description: </label>
+          <input type='text' ng-model='newQuestion.description' name='description' /><br />
+      <div class="button-position">
+    		  <button type="submit" ng-click='addQuestion()' class="btn-simple">Submit</button>
+      </div>
+ 	</form>
+
+</div>

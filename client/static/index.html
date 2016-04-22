@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Questions and Answers - MEAN hackathon app</title>
+    <meta name="description" content="A MEAN app written in 4 hours!">
+    <meta name="author" content="Mollie Knute">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <style>
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular-route.min.js"></script>
+
+    <script type='text/javascript'>
+    	var qaApp = angular.module('qaApp', ['ngRoute']);
+
+        qaApp.config(function ($routeProvider) {
+          $routeProvider
+            .when('/', {
+                templateUrl: 'partials/questions_main.html'
+            })
+            .when('/new_question', {
+                templateUrl: 'partials/question_new.html'
+            })
+            .otherwise({
+              redirectTo: '/'
+            });
+        });
+
+///////// FACTORY  ///
+     qaApp.factory('QuestionFactory', function($http) {
+      var factory = {};
+      var questions = [];
+      factory.getQuestions = function(callback) {
+          $http.get('/questions').success(function(output){
+          questions = output;
+          callback(questions);
+        });
+      };
+
+      factory.addQuestion = function(info, callback) {
+        $http.post('/questions', info).success(function(output){
+          console.log("Added a new question through the factory!");
+          $location.path('/');
+        });
+      };
+
+      return factory;
+    });
+
+    // qaApp.factory('UserFactory', function($http, $location){
+    //   var factory = {};
+    //   var currentUser = null;
+
+
+    //   factory.getUser = function(callback){
+    //     if(currentUser) {
+    //       callback(currentUser);
+    //     } else {
+    //       $location.path('/');
+    //     }
+    //   }
+
+      //a factory method to login the user
+      //will either find an existing user by that name and return it
+      //or the backend will create a new user with that name
+      //either way i expect to get a user object back from the database.
+    //     factory.logUser = function(user, callback){
+    //       $http.post('/login', logUser).then(function(res){
+    //         currentUser = response.data;
+    //         callback();
+    //       });
+    //     };
+    //   }
+
+    //   return factory;
+    // });
+
+////////// Controllers ////////
+    qaApp.controller('QuestionsController', function ($scope, $window, QuestionFactory){
+      QuestionFactory.getQuestions(function(data){
+        $scope.questions = data;
+      });
+
+      $scope.addQuestion = function() {
+          console.log($scope.newQuestion);
+          QuestionFactory.addQuestion($scope.newQuestion, function(){
+              $scope.questions = QuestionFactory.getQuestions();
+              $scope.newQuestion = {};
+              console.log("Added a new question in the controller!");
+          });
+          QuestionFactory.getQuestions(function(data){
+            $scope.questions = data;
+            $window.alert('You added a new question!');
+          });
+      };
+
+
+        
+    });
+
+
+    //   qaApp.controller('LoginsController', function($scope, loginFactory, $location){
+
+
+    //   $scope.login = function(user){
+    //     loginFactory.login(user, function(){
+    //       loginFactory.getUser(function(user){
+    //         console.log(user);
+    //         $location.path('/success');
+    //       })
+
+    //     })
+    //   }
+    // });
+
+  //   qaApp.controller('UsersController', function ($scope, UserFactory){
+  //       $scope.users = [];
+
+  //       $scope.addUser = function (){
+		//     $scope.users.push($scope.newUser); 
+		//     $scope.newUser = {};
+		// };
+
+
+  //       UserFactory.getUsers(function (data){
+  //           $scope.users = data;
+  //       });
+        
+  //   });
+
+</script>
+</head>
+<body ng-app="qaApp">
+  <h1>Questions</h1>
+
+  <div class="wrapper">
+
+     <a href="#" type="button" class="btn-nav">Home</a> <a href="#/new_question" type="button" class="btn-nav">Add Question</a>
+        <div class="mini-wrapper">
+        
+	        <div ng-view="">
+            ... loading ...
+	        </div>
+
+	    </div>
+    </div>
+</body>
+<script type="javascript">
+
+//   var logUser = prompt("Please enter your username", "");
+</script>
+</html>

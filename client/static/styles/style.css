@@ -1,0 +1,95 @@
+body {
+	font-family: Verdana, Arial, sans-serif;
+	padding: 1em 2em;
+}
+h1 {
+	text-align: center;
+	background-color: black;
+	color: white;
+	margin-bottom: 0;
+	padding: .5em;
+}
+.wrapper {
+	border: 2px solid black;
+	padding: 1em;
+    height: 80%;
+}
+.monotype {
+	font-family: "Courier New", Courier, monospace;
+}
+form {
+	margin-bottom: 2em;
+}
+.searchHeadWidth {
+	width: 250px;
+	display: inline-block;
+	text-align: right;
+	padding-right: 10px;
+}
+table {
+    border-collapse: collapse;
+    border: 1px solid #AAA;
+    font-size: larger;
+    width: 100%;
+}
+tr {
+    border-bottom: 1px solid #CCC;
+}
+th {
+    background-color: #AAA;
+    color: white;
+    padding: .5em;
+}
+td {
+    padding: .5em;
+}
+label, select {
+	line-height: 1.3em;
+	display: block;
+}
+button {
+	margin-top: .5em;
+}
+button:hover {
+	cursor: pointer;
+}
+.btn-buy, .btn-del, .btn-add, .btn-nav {
+    color: white;
+    padding: .3em;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    font-size: large;
+}
+.btn-add {
+    border: darkorange 2px solid;
+    background-color: orange;
+
+}
+.btn-buy {
+    border: darkgreen 2px solid;
+    background-color: green;
+}
+.btn-del {
+    border: #911 2px solid;
+    background-color: red;
+}
+.btn-nav {
+    border: #999 2px solid;
+    border-bottom: 0px transparent;
+    background-color: #FFF;
+    color: black;
+    text-decoration: none;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-bottom: .3em;
+}
+a.btn-nav:hover {
+	text-decoration: underline;
+	background-color: #DEDEDE;
+}
+.mini-wrapper {
+	border: 2px solid #999;
+	padding: 1em;
+	margin-top: .25em;
+    height: 100%;
+}

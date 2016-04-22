@@ -1,0 +1,13 @@
+{
+  "name": "mean_hackathon_qa",
+  "version": "1.0.0",
+  "description": "Full MEAN Project featuring questions and answers",
+  "main": "server.js",
+  "author": "Mollie Knute",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.12"
+  }
+}
